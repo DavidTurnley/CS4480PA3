@@ -1,6 +1,7 @@
 
 services:
   r1:
+    container_name: Router1
     build: .
     stdin_open: true
     tty: true
@@ -16,6 +17,7 @@ services:
         ipv4_address: 10.0.14.11
 
   r2:
+    container_name: Router2
     build: .
     stdin_open: true
     tty: true
@@ -29,6 +31,7 @@ services:
         ipv4_address: 10.0.23.12
 
   r3:
+    container_name: Router3
     build: .
     stdin_open: true
     tty: true
@@ -44,6 +47,7 @@ services:
         ipv4_address: 10.0.34.13
 
   r4:
+    container_name: Router4
     build: .
     stdin_open: true
     tty: true
@@ -57,6 +61,7 @@ services:
         ipv4_address: 10.0.34.14
 
   ha:
+    container_name: HostA
     build: .
     stdin_open: true
     tty: true
@@ -68,6 +73,7 @@ services:
         ipv4_address: 10.0.10.10
 
   hb:
+    container_name: HostB
     build: .
     stdin_open: true
     tty: true
