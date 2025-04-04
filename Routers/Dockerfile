@@ -4,6 +4,8 @@ RUN apt-get update
 RUN apt-get -y install bash iproute2 net-tools tcpdump vim iputils-ping
 RUN apt-get clean
 
+CMD ["bash"]
+
 RUN apt -y install curl
 RUN apt -y install gnupg
 
@@ -17,5 +19,3 @@ RUN echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouti
 
 RUN apt update && apt -y install frr frr-pythontools
 
-
-CMD ["bash"]

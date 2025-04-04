@@ -62,7 +62,7 @@ services:
 
   ha:
     container_name: HostA
-    build: .
+    build: ./Hosts
     stdin_open: true
     tty: true
     cap_add:
@@ -74,7 +74,7 @@ services:
 
   hb:
     container_name: HostB
-    build: .
+    build: ./Hosts
     stdin_open: true
     tty: true
     cap_add:
