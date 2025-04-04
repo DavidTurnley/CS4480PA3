@@ -10,5 +10,4 @@ stop:
 	docker compose down
 
 refresh:
-	cd ~
-	git pull https:github.com/DavidTurnley/CS4480PA3
+	git pull
