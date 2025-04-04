@@ -9,11 +9,11 @@ services:
     privileged: true
     networks:
       net10:
-        ipv4_address: 10.0.10.1
+        ipv4_address: 10.0.10.11
       net12:
-        ipv4_address: 10.0.12.1
+        ipv4_address: 10.0.12.11
       net14:
-        ipv4_address: 10.0.14.1
+        ipv4_address: 10.0.14.11
 
   r2:
     build: .
@@ -24,9 +24,9 @@ services:
     privileged: true
     networks:
       net12:
-        ipv4_address: 10.0.12.2
+        ipv4_address: 10.0.12.12
       net23:
-        ipv4_address: 10.0.23.2
+        ipv4_address: 10.0.23.12
 
   r3:
     build: .
@@ -37,11 +37,11 @@ services:
     privileged: true
     networks:
       net35:
-        ipv4_address: 10.0.35.3
+        ipv4_address: 10.0.35.13
       net23:
-        ipv4_address: 10.0.23.3
+        ipv4_address: 10.0.23.13
       net34:
-        ipv4_address: 10.0.34.3
+        ipv4_address: 10.0.34.13
 
   r4:
     build: .
@@ -52,9 +52,9 @@ services:
     privileged: true
     networks:
       net14:
-        ipv4_address: 10.0.14.4
+        ipv4_address: 10.0.14.14
       net34:
-        ipv4_address: 10.0.34.4
+        ipv4_address: 10.0.34.14
 
   ha:
     build: .
@@ -76,7 +76,7 @@ services:
     privileged: true    
     networks:
       net35:
-        ipv4_address: 10.0.35.5
+        ipv4_address: 10.0.35.15
 
 networks:
   net10:
