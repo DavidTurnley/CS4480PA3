@@ -2,7 +2,7 @@
 services:
   r1:
     container_name: Router1
-    build: .
+    build: ./Routers
     stdin_open: true
     tty: true
     cap_add:
@@ -18,7 +18,7 @@ services:
 
   r2:
     container_name: Router2
-    build: .
+    build: ./Routers
     stdin_open: true
     tty: true
     cap_add:
@@ -32,7 +32,7 @@ services:
 
   r3:
     container_name: Router3
-    build: .
+    build: ./Routers
     stdin_open: true
     tty: true
     cap_add:
@@ -48,7 +48,7 @@ services:
 
   r4:
     container_name: Router4
-    build: .
+    build: ./Routers
     stdin_open: true
     tty: true
     cap_add:
