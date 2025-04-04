@@ -6,12 +6,12 @@ RUN apt-get clean
 
 CMD ["bash"]
 
-RUN apt -y install curl
-RUN apt -y install gnupg
+RUN apt-get -y install curl
+RUN apt-get -y install gnupg
 
 RUN curl -s https://deb.frrouting.org/frr/keys.gpg | tee /usr/share/keyrings/frrouting.gpg > /dev/null
 
-RUN apt install lsb-release
+RUN apt-get install lsb-release
 
 RUN FRRVER="frr-stable"
 
