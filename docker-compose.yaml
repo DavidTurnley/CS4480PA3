@@ -1,0 +1,125 @@
+
+services:
+  r1:
+    name: Router1
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net01:
+        ipv4_address: 10.0.1.1
+      net12:
+        ipv4_address: 10.0.12.1
+      net14:
+        ipv4_address: 10.0.14.1
+
+  r2:
+    name: Router2
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net12:
+        ipv4_address: 10.0.12.2
+      net23:
+        ipv4_address: 10.0.23.2
+
+  r3:
+    name: Router3
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net35:
+        ipv4_address: 10.0.35.3
+      net23:
+        ipv4_address: 10.0.23.3
+      net34:
+        ipv4_address: 10.0.34.3
+
+  r4:
+    name: Router4
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net14:
+        ipv4_address: 10.0.14.4
+      net34:
+        ipv4_address: 10.0.34.4
+
+  ha:
+    name: HostA
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net01:
+        ipv4_address: 10.0.1.0
+
+  hb:
+    name: HostB
+    build: .
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net35:
+        ipv4_address: 10.0.35.5
+
+networks:
+  net01:
+    name: AR-01
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.1.0/24
+  net35:
+    name: BR-35
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.35.0/24
+  net12:
+    name: RR-12
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.12.0/24
+  net23:
+    name: RR-23
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.23.0/24
+  net34:
+    name: RR-34
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.34.0/24
+  net14:
+    name: RR-14
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.14.0/24
+
+
