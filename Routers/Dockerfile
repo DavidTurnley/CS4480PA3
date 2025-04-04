@@ -17,6 +17,6 @@ RUN FRRVER="frr-stable"
 
 RUN echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr $(lsb_release -s -c) $FRRVER | tee -a /etc/apt/sources.list.d/frr.list
 
-RUN apt-cache update
-RUN apt -y install frr frr-pythontools
+RUN apt-get update
+RUN apt-get -y install frr frr-pythontools
 
