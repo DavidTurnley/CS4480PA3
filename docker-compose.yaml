@@ -8,8 +8,8 @@ services:
       - ALL
     privileged: true
     networks:
-      net01:
-        ipv4_address: 10.0.1.1
+      net10:
+        ipv4_address: 10.0.10.1
       net12:
         ipv4_address: 10.0.12.1
       net14:
@@ -64,8 +64,8 @@ services:
       - ALL
     privileged: true    
     networks:
-      net01:
-        ipv4_address: 10.0.1.0
+      net10:
+        ipv4_address: 10.0.10.0
 
   hb:
     build: .
@@ -79,12 +79,12 @@ services:
         ipv4_address: 10.0.35.5
 
 networks:
-  net01:
-    name: AR-01
+  net10:
+    name: AR-10
     ipam:
       driver: default
       config:
-        - subnet: 10.0.1.0/24
+        - subnet: 10.0.10.0/24
   net35:
     name: BR-35
     ipam:
