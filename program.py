@@ -71,6 +71,14 @@ while not userInput.startswith("q") :
                 cmds.append("interface eth" + str(i))
                 cmds.append("ip ospf cost 5")
                 configure(router, cmds)
+    
+    if(parsed.startswith("oneach")):
+        cmd = userInput.split(" ", 1)[1]
+        for router in routerNames:
+            print(router + ": ")
+            daemonCmd(router, cmd)
+        print("Finished!")
+
 
                 
 
