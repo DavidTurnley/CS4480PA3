@@ -43,7 +43,7 @@ while not userInput.startswith("q") :
             daemonCmd(router, "configure terminal")
 
             daemonCmd(router, "router ospf")
-            daemonCmd(router, "ospf router-id 10.0.10" + id + ".1" + id)
+            daemonCmd(router, "ospf router-id 10.0.10" + str(id) + ".1" + str(id))
             for connection in connections:
                 subnet = str(min(id, connection)) + str(max(id,connection))
                 daemonCmd(router, "network 10.0." + subnet + ".0/24 area 0.0.0.0")
