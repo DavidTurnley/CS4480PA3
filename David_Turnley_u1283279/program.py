@@ -65,9 +65,13 @@ while not userInput.startswith("q") :
 
     if(parsed == "start"):
 
-        '''
+        
         os.system("docker compose up -d")
         os.system("docker compose build")
+        os.system("apt-get install dos2unix")
+
+        os.system("dos2unix daemons")
+
         for r in routerNames:
             msg = "docker cp ./daemons "+ r +":etc/frr/"
             print(msg)
@@ -79,13 +83,13 @@ while not userInput.startswith("q") :
 
         os.system("docker exec -it HostA route add -net 10.0.35.0/24 gw 10.0.10.11")
         os.system("docker exec -it HostB route add -net 10.0.10.0/24 gw 10.0.35.13")
-        '''
+        
 
-        print("make start")
-        os.system("make start")
+        # print("make start")
+        # os.system("make start")
 
-        print("Finished Make...")
-        time.sleep(1.5)
+        # print("Finished Make...")
+        # time.sleep(1.5)
 
         for router in routerNames:
             id = routerID.get(router)
