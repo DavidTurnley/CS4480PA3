@@ -13,9 +13,9 @@ routerConnections = {"Router1":[0,2,4], "Router2": [1, 3], "Router3": [2, 4, 5],
 routerID = {"Router1":1, "Router2":2, "Router2":3, "Router2":4}
 
 def daemonCmd(input:str):
-    os.system("vtysh -c \"" + str + "\"")
+    os.system("docker exec -it vtysh -c \'" + str + "\'")
 
-userInput = None
+userInput = ""
 userInput = cast(str, userInput)
 
 while not userInput.startswith("q") :
@@ -35,21 +35,20 @@ while not userInput.startswith("q") :
         os.system("sudo bash")
         os.system("make start")
 
-    if(parsed == "sestup"):
+    if(parsed == "setup"):
         for router in routerNames:
-            if(len(router) == 0):
-                continue
-
             id = routerID.get(router)
             connections = routerConnections.get(router)
 
             daemonCmd("configure terminal")
+
             daemonCmd("router ospf")
             daemonCmd("ospf router-id 10.0.10" + id + ".1" + id)
-
             for connection in connections:
                 subnet = str(min(id, connection)) + str(max(id,connection))
                 daemonCmd("network 10.0." + subnet + ".0/24 area 0.0.0.0")
+            daemonCmd("exit")
+
                 
 
             
