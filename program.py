@@ -10,10 +10,16 @@ from typing import cast
 routerNames = ["Router1", "Router2", "Router3", "Router4"]
 
 routerConnections = {"Router1":[0,2,4], "Router2": [1, 3], "Router3": [2, 4, 5], "Router4": [1, 3]}
-routerID = {"Router1":1, "Router2":2, "Router2":3, "Router2":4}
+routerID = {"Router1":1, "Router2":2, "Router3":3, "Router4":4}
 
 def daemonCmd(router:str, input:str):
     os.system("docker exec -it " + router + " vtysh -c \'" + input + "\'")
+
+def configure(router:str, input:list[str]):
+    out = "docker exec -it " + router + "vtysh -c \"configure terminal\" "
+    for i in input:
+        out += "-c \"" + i + "\" "
+    os.system(out)
 
 userInput = ""
 userInput = cast(str, userInput)
@@ -40,21 +46,30 @@ while not userInput.startswith("q") :
             id = routerID.get(router)
             connections = routerConnections.get(router)
 
-            daemonCmd(router, "configure terminal")
+            # daemonCmd(router, "configure terminal")
 
-            daemonCmd(router, "router ospf")
-            daemonCmd(router, "ospf router-id 10.0.10" + str(id) + ".1" + str(id))
+            #daemonCmd(router, "router ospf")
+
+            cmds = cast(list[str], cmds)
+
+            cmds.append("ospf router-id 10.0.10" + str(id) + ".1" + str(id))
+
+            #daemonCmd(router, "ospf router-id 10.0.10" + str(id) + ".1" + str(id))
             for connection in connections:
                 subnet = str(min(id, connection)) + str(max(id,connection))
-                daemonCmd(router, "network 10.0." + subnet + ".0/24 area 0.0.0.0")
-            daemonCmd(router, "exit")
+                if(subnet == "01"):
+                    subnet = "10"
+                #daemonCmd(router, "network 10.0." + subnet + ".0/24 area 0.0.0.0")
+                cmds.append("network 10.0." + subnet + ".0/24 area 0.0.0.0")
+            # daemonCmd(router, "exit")
+
+            configure(router, cmds)
 
             for i in range(len(connections)) :
-                daemonCmd(router, "interface eth" + str(i))
-                daemonCmd(router, "ip ospf cost 5")
-                daemonCmd(router, "exit")
-            
-            daemonCmd(router, "exit")
+                cmds.clear()
+                cmds.append("interface eth" + str(i))
+                cmds.append("ip ospf cost 5")
+                configure(router, cmds)
 
                 
 
