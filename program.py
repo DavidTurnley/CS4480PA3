@@ -19,6 +19,7 @@ def configure(router:str, input:list[str]):
     out = "docker exec -it " + router + " vtysh -c \"configure terminal\""
     for i in input:
         out += " -c \"" + i + "\""
+    print(out)
     os.system(out)
 
 userInput = ""
