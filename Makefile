@@ -14,5 +14,8 @@ start:
 stop:
 	docker compose down
 
+program:
+	python program.py
+
 refresh:
 	git pull
