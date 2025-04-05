@@ -22,6 +22,16 @@ def configure(router:str, input:list[str]):
     print(out)
     os.system(out)
 
+def setLinkWeights(router:str, val:int):
+    cmds = ["Filler"]
+    connections = routerConnections.get(router)
+    for i in range(len(connections)) :
+        cmds.clear()
+        cmds.append("interface eth" + str(i))
+        cmds.append("ip ospf cost " + str(val))
+        configure(router, cmds)
+
+
 userInput = ""
 userInput = cast(str, userInput)
 
@@ -75,6 +85,16 @@ while not userInput.startswith("q") :
                 cmds.append("interface eth" + str(i))
                 cmds.append("ip ospf cost 5")
                 configure(router, cmds)
+
+        os.system("docker exec -it HostA ping -c 5 10.0.10.11")
+
+    if(parsed == "south"):
+        setLinkWeights("Router2", 100)
+        setLinkWeights("Router4", 1)
+
+    if(parsed == "north"):
+        setLinkWeights("Router4", 100)
+        setLinkWeights("Router2", 1)
     
     if(parsed.startswith("oneach")):
         cmd = userInput.split(" ", 1)[1]
