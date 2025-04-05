@@ -5,6 +5,8 @@ import os
 
 import sys
 
+import time
+
 from typing import cast
 
 routerNames = ["Router1", "Router2", "Router3", "Router4"]
@@ -63,6 +65,7 @@ while not userInput.startswith("q") :
 
     if(parsed == "start"):
 
+        '''
         os.system("docker compose up -d")
         os.system("docker compose build")
         for r in routerNames:
@@ -76,6 +79,13 @@ while not userInput.startswith("q") :
 
         os.system("docker exec -it HostA route add -net 10.0.35.0/24 gw 10.0.10.11")
         os.system("docker exec -it HostB route add -net 10.0.10.0/24 gw 10.0.35.13")
+        '''
+
+        print("make start")
+        os.system("make start")
+
+        print("Finished Make...")
+        time.sleep(1.5)
 
         for router in routerNames:
             id = routerID.get(router)
@@ -119,7 +129,7 @@ while not userInput.startswith("q") :
         setLinkWeights("Router2", 1)
 
     if(parsed == "ping"):
-        os.system("docker exec -it HostA ping -c 5 10.0.10.11")
+        os.system("docker exec -it HostA ping -c 5 10.0.35.15")
     
     if(parsed.startswith("oneach")):
         cmd = userInput.split(" ", 1)[1]
