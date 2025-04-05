@@ -16,8 +16,12 @@ services:
           parent: eth0
       net12:
         ipv4_address: 10.0.12.11
+        driver_opts: 
+          parent: eth2
       net14:
         ipv4_address: 10.0.14.11
+        driver_opts: 
+          parent: eth4
 
   r2:
     hostname: R2
