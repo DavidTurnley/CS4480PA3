@@ -50,7 +50,9 @@ while not userInput.startswith("q") :
 
             #daemonCmd(router, "router ospf")
 
-            cmds = cast(list[str], cmds)
+            cmds = ["Filler"]
+
+            cmds.clear()
 
             cmds.append("ospf router-id 10.0.10" + str(id) + ".1" + str(id))
 
