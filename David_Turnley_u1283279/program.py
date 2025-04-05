@@ -62,8 +62,13 @@ while not userInput.startswith("q") :
         os.system("docker compose up -d")
         os.system("docker compose build")
         for r in routerNames:
-            os.system("docker cp ./daemons "+ r +":etc/frr/")
-            os.system("docker exec -it "+ r +" service frr restart")
+            msg = "docker cp ./daemons "+ r +":etc/frr/"
+            print(msg)
+            os.system(msg)
+        for r in routerNames:
+            msg = "docker exec -it "+ r +" service frr restart"
+            print(msg)
+            os.system(msg)
 
         os.system("docker exec -it HostA route add -net 10.0.35.0/24 gw 10.0.10.11")
         os.system("docker exec -it HostB route add -net 10.0.10.0/24 gw 10.0.35.13")
@@ -92,6 +97,10 @@ while not userInput.startswith("q") :
         os.system("docker exec -it HostA ping -c 5 10.0.10.11")
 
         print("\n\n\nFINISHED!\n\n\n")
+
+    if(parsed == "stop"):
+        print("docker compose down")
+        os.system("docker compose down")
 
     if(parsed == "south"):
         setLinkWeights("Router2", 100)
