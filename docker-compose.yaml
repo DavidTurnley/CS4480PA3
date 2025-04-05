@@ -1,6 +1,7 @@
 
 services:
   r1:
+    hostname: R1
     container_name: Router1
     build: ./Routers
     stdin_open: true
@@ -17,6 +18,7 @@ services:
         ipv4_address: 10.0.14.11
 
   r2:
+    hostname: R2
     container_name: Router2
     build: ./Routers
     stdin_open: true
@@ -31,6 +33,7 @@ services:
         ipv4_address: 10.0.23.12
 
   r3:
+    hostname: R3
     container_name: Router3
     build: ./Routers
     stdin_open: true
@@ -47,6 +50,7 @@ services:
         ipv4_address: 10.0.34.13
 
   r4:
+    hostname: R4
     container_name: Router4
     build: ./Routers
     stdin_open: true
