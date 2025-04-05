@@ -13,7 +13,7 @@ routerConnections = {"Router1":[0,2,4], "Router2": [1, 3], "Router3": [2, 4, 5],
 routerID = {"Router1":1, "Router2":2, "Router2":3, "Router2":4}
 
 def daemonCmd(router:str, input:str):
-    os.system("docker exec -it " + router + "vtysh -c \'" + str + "\'")
+    os.system("docker exec -it " + router + "vtysh -c \'" + input + "\'")
 
 userInput = ""
 userInput = cast(str, userInput)
