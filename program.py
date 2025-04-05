@@ -43,6 +43,10 @@ while not userInput.startswith("q") :
         os.system("make start")
 
     if(parsed == "setup"):
+
+        os.system("docker exec -it HostA route add -net 10.0.35.0/24 gw 10.0.10.11")
+        os.system("docker exec -it HostA route add -net 10.0.10.0/24 gw 10.0.35.13")
+
         for router in routerNames:
             id = routerID.get(router)
             connections = routerConnections.get(router)
