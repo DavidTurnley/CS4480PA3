@@ -85,12 +85,6 @@ while not userInput.startswith("q") :
         os.system("docker exec -it HostB route add -net 10.0.10.0/24 gw 10.0.35.13")
         
 
-        # print("make start")
-        # os.system("make start")
-
-        # print("Finished Make...")
-        # time.sleep(1.5)
-
         for router in routerNames:
             id = routerID.get(router)
             connections = routerConnections.get(router)
@@ -118,6 +112,12 @@ while not userInput.startswith("q") :
         for router in routerNames:
             daemonCmd(router, cmd)
 
+        print("Letting Daemons settle...")
+        time.sleep(5)
+
+        print("False ping...")
+        os.system("docker exec -it HostA ping -c 5 10.0.35.15")
+
         print("\n\n\n\n\nFINISHED!\n\n\n")
 
     if(parsed == "stop"):
@@ -133,6 +133,7 @@ while not userInput.startswith("q") :
         setLinkWeights("Router2", 1)
 
     if(parsed == "ping"):
+        print("HostA ping 5 HostB")
         os.system("docker exec -it HostA ping -c 5 10.0.35.15")
     
     if(parsed.startswith("oneach")):
