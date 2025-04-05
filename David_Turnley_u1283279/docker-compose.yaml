@@ -1,0 +1,129 @@
+
+services:
+  r1:
+    hostname: R1
+    container_name: Router1
+    build: ./Routers
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net10:
+        ipv4_address: 10.0.10.11
+      net12:
+        ipv4_address: 10.0.12.11
+      net14:
+        ipv4_address: 10.0.14.11
+
+  r2:
+    hostname: R2
+    container_name: Router2
+    build: ./Routers
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net12:
+        ipv4_address: 10.0.12.12
+      net23:
+        ipv4_address: 10.0.23.12
+
+  r3:
+    hostname: R3
+    container_name: Router3
+    build: ./Routers
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net35:
+        ipv4_address: 10.0.35.13
+      net23:
+        ipv4_address: 10.0.23.13
+      net34:
+        ipv4_address: 10.0.34.13
+
+  r4:
+    hostname: R4
+    container_name: Router4
+    build: ./Routers
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true
+    networks:
+      net14:
+        ipv4_address: 10.0.14.14
+      net34:
+        ipv4_address: 10.0.34.14
+
+  ha:
+    container_name: HostA
+    build: ./Hosts
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net10:
+        ipv4_address: 10.0.10.10
+
+  hb:
+    container_name: HostB
+    build: ./Hosts
+    stdin_open: true
+    tty: true
+    cap_add:
+      - ALL
+    privileged: true    
+    networks:
+      net35:
+        ipv4_address: 10.0.35.15
+
+networks:
+  net10:
+    name: AR-10
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.10.0/24
+  net35:
+    name: BR-35
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.35.0/24
+  net12:
+    name: RR-12
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.12.0/24
+  net23:
+    name: RR-23
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.23.0/24
+  net34:
+    name: RR-34
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.34.0/24
+  net14:
+    name: RR-14
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.14.0/24
+
+
