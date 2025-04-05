@@ -37,10 +37,10 @@ while not userInput.startswith("q") :
     
     if(parsed == "start"):
         os.system("git clone https://github.com/DavidTurnley/CS4480PA3")
-        os.system("cd CS4480PA3")
-        os.system("./dockersetup")
+        #os.system("cd CS4480PA3")
+        os.system("./CS4480PA3/dockersetup")
         os.system("sudo bash")
-        os.system("make start")
+        os.system("./CS4480PA3/make start")
 
     if(parsed == "setup"):
 
