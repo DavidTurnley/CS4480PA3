@@ -20,12 +20,12 @@ userInput = cast(str, userInput)
 
 while not userInput.startswith("q") :
 
-    userInput = input("Input Command ['q' or \"quit\" to quit, 'h' for help]")
+    userInput = input("Input Command ['q' or \"quit\" to quit, 'h' for help]\n")
 
     parsed = userInput.lower()
 
     if(parsed == "h" or parsed == "help"):
-        print("[q][quit] to quit the program\n")
+        print("[q][quit] to quit the program")
         print("[h][help] to show this help page")
     
     if(parsed == "start"):
