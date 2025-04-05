@@ -16,9 +16,9 @@ def daemonCmd(router:str, input:str):
     os.system("docker exec -it " + router + " vtysh -c \'" + input + "\'")
 
 def configure(router:str, input:list[str]):
-    out = "docker exec -it " + router + "vtysh -c \"configure terminal\" "
+    out = "docker exec -it " + router + " vtysh -c \"configure terminal\""
     for i in input:
-        out += "-c \"" + i + "\" "
+        out += " -c \"" + i + "\""
     os.system(out)
 
 userInput = ""
