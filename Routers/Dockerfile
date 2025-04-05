@@ -13,9 +13,7 @@ RUN curl -s https://deb.frrouting.org/frr/keys.gpg | tee /usr/share/keyrings/frr
 
 RUN apt-get install lsb-release
 
-RUN FRRVER="frr-stable"
-
-RUN echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr $(lsb_release -s -c) $FRRVER | tee -a /etc/apt/sources.list.d/frr.list
+RUN echo deb '[signed-by=/usr/share/keyrings/frrouting.gpg]' https://deb.frrouting.org/frr $(lsb_release -s -c) "frr-stable" | tee -a /etc/apt/sources.list.d/frr.list
 
 RUN apt-get update
 RUN apt-get -y install frr frr-pythontools
