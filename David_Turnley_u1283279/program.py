@@ -19,8 +19,11 @@ def configure(router:str, input:list[str]):
     out = "docker exec -it " + router + " vtysh -c \"configure terminal\""
     for i in input:
         out += " -c \"" + i + "\""
+    out += " -c \"end\""
     print(out)
     os.system(out)
+
+    daemonCmd(router, "write memory")
 
 def setLinkWeights(router:str, val:int):
     cmds = ["Filler"]
@@ -52,6 +55,7 @@ while not userInput.startswith("q") :
         print("[north]    to swap traffic to the norh path")
         print("[south]    to swap traffic to the south path")
         print("[oneach X] to run a vtysh command \"X\" on each router")
+        print("[ping]     perform a ping from HostA to HostB")
     
     if(parsed == "setup"):
         os.system("bash dockersetup")
@@ -96,7 +100,11 @@ while not userInput.startswith("q") :
 
         os.system("docker exec -it HostA ping -c 5 10.0.10.11")
 
-        print("\n\n\nFINISHED!\n\n\n")
+        cmd = "show ip ospf neighbor"
+        for router in routerNames:
+            daemonCmd(router, cmd)
+
+        print("\n\n\n\n\nFINISHED!\n\n\n")
 
     if(parsed == "stop"):
         print("docker compose down")
@@ -109,6 +117,9 @@ while not userInput.startswith("q") :
     if(parsed == "north"):
         setLinkWeights("Router4", 100)
         setLinkWeights("Router2", 1)
+
+    if(parsed == "ping"):
+        os.system("docker exec -it HostA ping -c 5 10.0.10.11")
     
     if(parsed.startswith("oneach")):
         cmd = userInput.split(" ", 1)[1]
