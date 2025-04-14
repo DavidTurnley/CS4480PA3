@@ -118,6 +118,12 @@ while not userInput.startswith("q") :
         print("False ping...")
         os.system("docker exec -it HostA ping -c 5 10.0.35.15")
 
+        print("Letting Daemons settle more...")
+        time.sleep(10)
+
+        print("False ping...")
+        os.system("docker exec -it HostA ping -c 5 10.0.35.15")
+
         print("\n\n\n\n\nFINISHED!\n\n\n")
 
     if(parsed == "stop"):

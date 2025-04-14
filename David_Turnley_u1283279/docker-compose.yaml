@@ -65,6 +65,7 @@ services:
         ipv4_address: 10.0.34.14
 
   ha:
+    hostname: HostA
     container_name: HostA
     build: ./Hosts
     stdin_open: true
@@ -77,6 +78,7 @@ services:
         ipv4_address: 10.0.10.10
 
   hb:
+    hostname: HostA
     container_name: HostB
     build: ./Hosts
     stdin_open: true
