@@ -42,9 +42,10 @@ userInput = cast(str, userInput)
 
 bypass = False
 
-if(sys.argv[1] == "-h"):
-    userInput = "help"
-    bypass = True
+if(sys.argv.__len__() > 1):
+    if(sys.argv[1] == "-h"):
+        userInput = "help"
+        bypass = True
 
 
 
@@ -52,10 +53,10 @@ while not userInput.startswith("q") :
 
     if not bypass:
         userInput = input("Input Command ['q' or \"quit\" to quit, 'h' for help]\n")
-        
-    bypass = False
     
     parsed = userInput.lower()
+
+    bypass = False
 
     if(parsed == "h" or parsed == "help"):
         print("[q][quit]  to quit the program")
