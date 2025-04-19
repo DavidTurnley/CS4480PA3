@@ -40,10 +40,21 @@ def setLinkWeights(router:str, val:int):
 userInput = ""
 userInput = cast(str, userInput)
 
+bypass = False
+
+if(sys.argv[1] == "-h"):
+    userInput = "help"
+    bypass = True
+
+
+
 while not userInput.startswith("q") :
 
-    userInput = input("Input Command ['q' or \"quit\" to quit, 'h' for help]\n")
-
+    if not bypass:
+        userInput = input("Input Command ['q' or \"quit\" to quit, 'h' for help]\n")
+        
+    bypass = False
+    
     parsed = userInput.lower()
 
     if(parsed == "h" or parsed == "help"):
